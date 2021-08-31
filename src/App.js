@@ -5,6 +5,7 @@ import './App.css';
 import { Header } from './components/Header/Header';
 
 function App() {
+  const [category, setCategory] = useState('en');
   const [word, setWord] = useState('');
   const [meanings, setMeanings] = useState([]);
 
@@ -34,7 +35,12 @@ function App() {
         maxWidth='md'
         style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}
       >
-        <Header />
+        <Header
+          category={category}
+          setCategory={setCategory}
+          word={word}
+          setWord={setWord}
+        />
       </Container>
     </div>
   );

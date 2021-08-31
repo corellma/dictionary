@@ -8,7 +8,7 @@ import {
 import './Header.css';
 import categories from '../../data/category';
 
-export function Header() {
+export function Header({ category, setCategory, word, setWord }) {
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -18,15 +18,39 @@ export function Header() {
     },
   });
 
+  const handleChange = (language) => {
+    setCategory(language);
+    setWord('');
+  };
+
   return (
     <div className='header'>
       <span className='title'>Dictionary</span>
       <div className='inputs'>
         <ThemeProvider theme={darkTheme}>
-          <TextField label='Enter word' />
-          <TextField select label='Language' helperText='Select a Language'>
+          <TextField
+            className='search'
+            label='Enter a word'
+            value={word}
+            onChange={(e) => {
+              setWord(e.target.value);
+            }}
+          />
+          <TextField
+            select
+            className='select'
+            label='Language'
+            value={category}
+            onChange={(e) => {
+              handleChange(e.target.value);
+            }}
+          >
             {categories.map((category) => {
-              return <MenuItem id={category.label}>{category.value}</MenuItem>;
+              return (
+                <MenuItem key={category.label} value={category.label}>
+                  {category.value}
+                </MenuItem>
+              );
             })}
           </TextField>
         </ThemeProvider>
