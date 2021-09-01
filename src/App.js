@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Container } from '@material-ui/core';
 import './App.css';
 import { Header } from './components/Header/Header';
-import { Definition } from './components/Definitions/Definitions';
+import { Definitions } from './components/Definitions/Definitions';
 
 function App() {
   const [category, setCategory] = useState('en');
@@ -21,8 +21,6 @@ function App() {
     }
   };
 
-  console.log(meanings);
-
   useEffect(() => {
     dictionaryApi();
   }, [word, category]);
@@ -30,7 +28,7 @@ function App() {
   return (
     <div
       className='App'
-      style={{ eight: '100vh', backgroundColor: '#282c34', color: 'white' }}
+      style={{ height: '100vh', backgroundColor: '#282c34', color: 'white' }}
     >
       <Container
         maxWidth='md'
@@ -42,7 +40,9 @@ function App() {
           word={word}
           setWord={setWord}
         />
-        <Definition />
+        {meanings && (
+          <Definitions word={word} meanings={meanings} category={category} />
+        )}
       </Container>
     </div>
   );
