@@ -28,7 +28,7 @@ export function Definitions({ word, meanings, category, lightMode }) {
                 {definition.synonyms && (
                   <span>
                     <b>Synonym: </b>
-                    {definition.synonyms.map((synonym) => `${synonym}, `)}
+                    {definition.synonyms.join(', ')}
                   </span>
                 )}
               </div>
