@@ -8,13 +8,20 @@ import {
 import './Header.css';
 import categories from '../../data/category';
 
-export function Header({ category, setCategory, word, setWord }) {
+export function Header({
+  category,
+  setCategory,
+  word,
+  setWord,
+  lightMode,
+  setLightMode,
+}) {
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: '#fff',
+        main: lightMode ? '#000' : '#fff',
       },
-      type: 'dark',
+      type: lightMode ? 'light' : 'dark',
     },
   });
 
@@ -30,7 +37,7 @@ export function Header({ category, setCategory, word, setWord }) {
         <ThemeProvider theme={darkTheme}>
           <TextField
             className='search'
-            label='Enter a word'
+            label='Search'
             value={word}
             onChange={(e) => {
               setWord(e.target.value);
